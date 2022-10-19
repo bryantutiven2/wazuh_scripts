@@ -1,0 +1,150 @@
+{
+    "logs": 
+    [
+        {
+            "_index": "wazuh-alerts-4.x-2022.10.18",
+            "_type": "_doc",
+            "_id": "Wvor6oMBL2TzRDxj4cI_",
+            "_version": 1,
+            "_score": null,
+            "_source": {
+                "cluster": {
+                "node": "srvskywazuh01",
+                "name": "wazuh-cluster"
+                },
+                "input": {
+                "type": "log"
+                },
+                "agent": {
+                "ip": "192.168.165.2",
+                "name": "AD-Skytechnosa",
+                "id": "002"
+                },
+                "manager": {
+                "name": "srvskywazuh01"
+                },
+                "data": {
+                "win": {
+                    "eventdata": {
+                    "subjectLogonId": "0x3e7",
+                    "subjectDomainName": "SKYTECHNOSA",
+                    "ipAddress": "192.168.165.1",
+                    "authenticationPackageName": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+                    "workstationName": "AD-SKYTECHNOSA",
+                    "subStatus": "0xc000006a",
+                    "logonProcessName": "Advapi",
+                    "targetUserName": "dromero",
+                    "keyLength": "0",
+                    "subjectUserSid": "S-1-5-18",
+                    "processId": "0x2b8",
+                    "processName": "C:\\\\Windows\\\\System32\\\\lsass.exe",
+                    "ipPort": "23593",
+                    "failureReason": "%%2313",
+                    "targetDomainName": "SKYTECHNOSA",
+                    "targetUserSid": "S-1-0-0",
+                    "logonType": "3",
+                    "subjectUserName": "AD-SKYTECHNOSA$",
+                    "status": "0xc000006d"
+                    },
+                    "system": {
+                    "eventID": "4625",
+                    "keywords": "0x8010000000000000",
+                    "providerGuid": "{54849625-5478-4994-a5ba-3e3b0328c30d}",
+                    "level": "0",
+                    "channel": "Security",
+                    "opcode": "0",
+                    "message": "\"An account failed to log on.\r\n\r\nSubject:\r\n\tSecurity ID:\t\tS-1-5-18\r\n\tAccount Name:\t\tAD-SKYTECHNOSA$\r\n\tAccount Domain:\t\tSKYTECHNOSA\r\n\tLogon ID:\t\t0x3E7\r\n\r\nLogon Type:\t\t\t3\r\n\r\nAccount For Which Logon Failed:\r\n\tSecurity ID:\t\tS-1-0-0\r\n\tAccount Name:\t\tdromero\r\n\tAccount Domain:\t\tSKYTECHNOSA\r\n\r\nFailure Information:\r\n\tFailure Reason:\t\tUnknown user name or bad password.\r\n\tStatus:\t\t\t0xC000006D\r\n\tSub Status:\t\t0xC000006A\r\n\r\nProcess Information:\r\n\tCaller Process ID:\t0x2b8\r\n\tCaller Process Name:\tC:\\Windows\\System32\\lsass.exe\r\n\r\nNetwork Information:\r\n\tWorkstation Name:\tAD-SKYTECHNOSA\r\n\tSource Network Address:\t192.168.165.1\r\n\tSource Port:\t\t23593\r\n\r\nDetailed Authentication Information:\r\n\tLogon Process:\t\tAdvapi  \r\n\tAuthentication Package:\tMICROSOFT_AUTHENTICATION_PACKAGE_V1_0\r\n\tTransited Services:\t-\r\n\tPackage Name (NTLM only):\t-\r\n\tKey Length:\t\t0\r\n\r\nThis event is generated when a logon request fails. It is generated on the computer where access was attempted.\r\n\r\nThe Subject fields indicate the account on the local system which requested the logon. This is most commonly a service such as the Server service, or a local process such as Winlogon.exe or Services.exe.\r\n\r\nThe Logon Type field indicates the kind of logon that was requested. The most common types are 2 (interactive) and 3 (network).\r\n\r\nThe Process Information fields indicate which account and process on the system requested the logon.\r\n\r\nThe Network Information fields indicate where a remote logon request originated. Workstation name is not always available and may be left blank in some cases.\r\n\r\nThe authentication information fields provide detailed information about this specific logon request.\r\n\t- Transited services indicate which intermediate services have participated in this logon request.\r\n\t- Package name indicates which sub-protocol was used among the NTLM protocols.\r\n\t- Key length indicates the length of the generated session key. This will be 0 if no session key was requested.\"",
+                    "version": "0",
+                    "systemTime": "2022-10-18T08:18:05.374991700Z",
+                    "eventRecordID": "4638810",
+                    "threadID": "3148",
+                    "computer": "AD-Skytechnosa.skytechnosa.soc",
+                    "task": "12544",
+                    "processID": "696",
+                    "severityValue": "AUDIT_FAILURE",
+                    "providerName": "Microsoft-Windows-Security-Auditing"
+                    }
+                }
+                },
+                "rule": {
+                "mail": false,
+                "level": 5,
+                "hipaa": [
+                    "164.312.b"
+                ],
+                "pci_dss": [
+                    "10.2.4",
+                    "10.2.5"
+                ],
+                "tsc": [
+                    "CC6.1",
+                    "CC6.8",
+                    "CC7.2",
+                    "CC7.3"
+                ],
+                "description": "Logon failure - Unknown user or bad password.",
+                "groups": [
+                    "windows",
+                    "windows_security",
+                    "authentication_failed"
+                ],
+                "nist_800_53": [
+                    "AC.7",
+                    "AU.14"
+                ],
+                "gdpr": [
+                    "IV_32.2",
+                    "IV_35.7.d"
+                ],
+                "firedtimes": 1,
+                "mitre": {
+                    "technique": [
+                    "Valid Accounts",
+                    "Account Access Removal"
+                    ],
+                    "id": [
+                    "T1078",
+                    "T1531"
+                    ],
+                    "tactic": [
+                    "Defense Evasion",
+                    "Persistence",
+                    "Privilege Escalation",
+                    "Initial Access",
+                    "Impact"
+                    ]
+                },
+                "id": "60122",
+                "gpg13": [
+                    "7.1"
+                ]
+                },
+                "location": "EventChannel",
+                "decoder": {
+                "name": "windows_eventchannel"
+                },
+                "id": "1666081086.10380989",
+                "timestamp": "2022-10-18T03:18:06.335-0500"
+            },
+            "fields": {
+                "timestamp": [
+                "2022-10-18T08:18:06.335Z"
+                ]
+            },
+            "highlight": {
+                "rule.id": [
+                "@opensearch-dashboards-highlighted-field@60122@/opensearch-dashboards-highlighted-field@"
+                ],
+                "cluster.name": [
+                "@opensearch-dashboards-highlighted-field@wazuh-cluster@/opensearch-dashboards-highlighted-field@"
+                ],
+                "agent.name": [
+                "@opensearch-dashboards-highlighted-field@AD-Skytechnosa@/opensearch-dashboards-highlighted-field@"
+                ]
+            },
+            "sort": [
+                1666081086335
+            ]
+            }
+    ]
+}
