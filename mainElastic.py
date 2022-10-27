@@ -13,6 +13,7 @@ def main():
         ruleId = int(log["_source"]["rule"]["id"])
         if target_user not in data.keys():
             data[target_user] = {}
+            
             if ruleId == 60122:
                 data[target_user]["failure"]=1
             elif ruleId == 60106:
