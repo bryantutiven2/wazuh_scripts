@@ -14,46 +14,80 @@ def connectElastic():
         print(info)
 
         print("\nQuery")
+        # query_body = {
+        #     # "from" : 0, "size" : 10,
+        #     "query": {
+        #         "bool":{    
+        #             "must":[
+        #                 # {"term": {"agent.name": "CCTVM01"}},
+        #                 {
+        #                     "match": {
+        #                         "agent.name": "CCTVM01"
+        #                     },
+        #                 },
+        #                 {
+        #                     "bool": {
+        #                             "should": [
+        #                                 {"term": {"rule.id": 60122}},
+        #                                 {"term": {"rule.id": 60106 }},
+        #                             ]
+        #                         }
+        #                 }
+        #             ],
+        #             "filter": [
+        #                 {
+        #                     "range": {
+        #                         "timestamp": {
+        #                             "gte": "2022-09-21T10:20:31", 
+        #                             "lte": "2022-10-21T23:20:31"
+        #                         }
+        #                     }           
+        #                 }
+        #             ],
+        #         },
+        #     }
+        # }
+
         query_body = {
-            "from" : 0, "size" : 10,
+            #  "from" : 0, 
+             "size" : 10000,
+            
             "query": {
-                "bool":{
-                    "must":[
-                        {
-                            "match": {
-                                "agent.name": "AD-Skytechnosa"
-                            },
-                        },
-                        {
-                        "bool": {
-                                "should": [
-                                    {"term": {"rule.id": 60137}},
-                                    # {"term": {"rule.id": "18125"}},
-                                    # {"term": {"rule.id": "18156"}},
-                                    # {"term": {"rule.id": "18157"}}
-                                ]
-                            }
-                        }
-                    ],
-                    "filter": [
-                        {
-                            "range": {
-                                "timestamp": {
-                                    "gte": "2022-09-10T16:20:31", 
-                                    "lte": "2022-10-13T16:20:31"
+                "bool": {
+                    "filter" : {
+                        "bool": {    
+                            "must":[
+                                {"term": {"agent.name": "CCTVM01"}},
+                                {
+                                    "bool": {
+                                            "should": [
+                                                {"term": {"rule.id": 60122}},
+                                                {"term": {"rule.id": 60106 }},
+                                            ]
+                                        }
                                 }
-                            }           
-                        }
-                    ],
-                },
+                            ],
+                            "filter": [
+                                {
+                                    "range": {
+                                        "timestamp": {
+                                            "gte": "2022-10-21T10:20:31", 
+                                            "lte": "2022-10-21T10:25:31"
+                                        }
+                                    }           
+                                }
+                            ],
+                        },
+                    }
+                }
             }
         }
-        resp = client.search(index="wazuh-alerts-4.x-2022.10.13", body=query_body)
 
-        print(json.dumps(resp, indent=4))
-        # indexes = client.indices.get('*')
-        # print(json.dumps(indexes, indent=4))
+        resp = client.search(index="wazuh-alerts-4.x-2022.10.21", body=query_body)
+
+        # print(json.dumps(resp, indent=4))
         print("Connection to ES Server successful")
+        return resp
     except:
         print("Unable to connect to server")
         exit(1)
